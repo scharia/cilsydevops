@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Switching to root user
+sudo -i
+
+# Checking server version
+cat /etc/os-release
+
+# checking disk size 
+free -m
+
+# CPU info
+cat /proc/cpuinfo 
+
+# Memory info
+cat /proc/meminfo
+
+# Update all packages
+yum update -y
+
+# installing lvm packages
+yum install lvm2 -y
+
+# Making disk 2 lvm type
+# Creating physical volume
+pvcreate /dev/xvdb
+
+# Creating volume group of physical volumes
+vgcreate future /dev/xvdb
+
+# Creating lvm through volume group
+lvcreate --name future_use --size 4000M future
+
+# formatting disk2 with xfs format and mounting it on /home2
+mkfs.xfs /dev/future/future_use 
+mkdir /home2
+mount /dev/future/future_use  /home2
+
+# Making it persistent after reboot
+sed -i '$ a /dev/future/future_use  /home2  xfs  noexec,defaults 0 0' /etc/fstab 
+
+# Checking if entries are OK or not
+mount -a
+
+# Disabling SELINUX
+sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
