@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#membersihkan tampilan layar
+#clear
+
+#variabel
+
+sshd=`sudo systemctl status`;
+#httpd=`systemctl status apache2`;
+#mysql= systemctl status mysql`;
+#tes1=`echo "anjay"`;
+
+#output
+echo -e "STATUS SSH \n"
+echo `$sshd`;
+echo -e "\n STATUS HTTPD"
+echo `$httpd`;
+echo -e "\n STATUS MYSQL"
+echo `$mysql`;
+
