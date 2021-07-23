@@ -1,21 +1,22 @@
 #!/bin/bash
 
-#membersihkan tampilan layar
-#clear
+#Jawaban dengan menggunakan positional parameter
 
-#variabel
+echo -e `STATUS $1 \n`;
+systemctl status $1;
 
-sshd=`systemctl status ssh | grep -e "Active:"`;
-httpd=`systemctl status apache2 | grep -e "Active:"`;
-mysql=`systemctl status mysql | grep -e "Active:"`;
-#tes1=`echo "anjay"`;
+#Percobaan dengan menggunakan user defined variable
+
+#sshd=`systemctl status ssh | grep -e "Active:"`;
+#httpd=`systemctl status apache2 | grep -e "Active:"`;
+#mysql=`systemctl status mysql | grep -e "Active:"`;
 
 #output
-echo -e "STATUS SSH";
-echo $sshd;
+#echo -e "STATUS SSH";
+#echo $sshd;
 #systemctl status ssh
-echo -e "\n STATUS HTTPD"
-echo $httpd;
-echo -e "\n STATUS MYSQL"
-echo $mysql;
+#echo -e "\n STATUS HTTPD"
+#echo $httpd;
+#echo -e "\n STATUS MYSQL"
+#echo $mysql;
 
